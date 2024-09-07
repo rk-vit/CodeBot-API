@@ -18,11 +18,11 @@ const model = genAI.getGenerativeModel({
   generationConfig: { responseMimeType: "application/json" },
 });
 
-app.post("/", (req, res) => {
+app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.get("/theme/:theme/:content", async (req, res) => {
+app.post("/theme/:theme/:content", async (req, res) => {
   const { theme, content } = req.params;
 
   const prompt = `
