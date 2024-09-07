@@ -18,7 +18,7 @@ const model = genAI.getGenerativeModel({
   generationConfig: { responseMimeType: "application/json" },
 });
 
-app.get("/", (req, res) => {
+app.post("/", (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
@@ -47,7 +47,7 @@ app.get("/theme/:theme/:content", async (req, res) => {
   }
 });
 
-app.get("/changes/:code/:change", async (req, res) => {
+app.post("/changes/:code/:change", async (req, res) => {
   const { code, change } = req.params;
 
   const prompt = `I Have some code :- ${code} and a text explaining the changes I want :- ${change}, now generate the code with changes made using this json schema: 
