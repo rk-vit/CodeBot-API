@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            padding: 0;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        .endpoint {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .request, .response, .error {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-top: 10px;
+            overflow-x: auto;
+        }
+        .error {
+            background-color: #fee;
+            border-color: #fdd;
+        }
+        pre {
+            margin: 0;
+            padding: 0;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>API Documentation</h1>
+    <p>This API provides endpoints for generating and modifying HTML content based on user inputs. Powered by Gemini AI to process requests and return HTML code snippets.</p>
+
+    <h2>Base URL</h2>
+    <pre>http://localhost:3000</pre>
+
+    <h2>Endpoints</h2>
+
+    <div class="endpoint">
+        <h3>1. GET /theme/:theme/:content</h3>
+        <p><strong>Description:</strong> Generates an HTML page based on the provided theme and content.</p>
+        <h4>Request:</h4>
+        <p>Use path parameters to pass the HTML theme and content.</p>
+        <pre><code>GET /theme/{theme}/{content}</code></pre>
+        <h4>Example:</h4>
+        <pre><code>GET /theme/&lt;html&gt;&lt;head&gt;&lt;title&gt;Theme&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;/Welcome to my website!</code></pre>
+        <h4>Response:</h4>
+        <pre><code>Status Code: 200 OK
+Content-Type: application/json
+{
+    "code": "&lt;html&gt;&lt;head&gt;&lt;title&gt;Theme&lt;/title&gt;&lt;/head&gt;&lt;body&gt;Welcome to my website!&lt;/body&gt;&lt;/html&gt;"
+}</code></pre>
+        <h4>Error Response:</h4>
+        <pre class="error"><code>Status Code: 500 Internal Server Error
+Content-Type: application/json
+{
+    "error": "An error occurred while processing your request."
+}</code></pre>
+    </div>
+
+    <div class="endpoint">
+        <h3>2. GET /changes/:code/:change</h3>
+        <p><strong>Description:</strong> Modifies existing code based on the provided changes.</p>
+        <h4>Request:</h4>
+        <p>Use path parameters to pass the code and the changes you want to make.</p>
+        <pre><code>GET /changes/{code}/{change}</code></pre>
+        <h4>Example:</h4>
+        <pre><code>GET /changes/&lt;html&gt;&lt;head&gt;&lt;title&gt;Old Title&lt;/title&gt;&lt;/head&gt;&lt;body&gt;Old Content&lt;/body&gt;&lt;/html&gt;/Update the title to 'New Title' and the content to 'New Content'.</code></pre>
+        <h4>Response:</h4>
+        <pre><code>Status Code: 200 OK
+Content-Type: application/json
+{
+    "code": "&lt;html&gt;&lt;head&gt;&lt;title&gt;New Title&lt;/title&gt;&lt;/head&gt;&lt;body&gt;New Content&lt;/body&gt;&lt;/html&gt;"
+}</code></pre>
+        <h4>Error Response:</h4>
+        <pre class="error"><code>Status Code: 500 Internal Server Error
+Content-Type: application/json
+{
+    "error": "An error occurred while processing your request."
+}</code></pre>
+    </div>
+
+    <h2>Error Codes</h2>
+    <ul>
+        <li><strong>400 Bad Request:</strong> The request could not be understood by the server due to malformed syntax.</li>
+        <li><strong>404 Not Found:</strong> The requested resource could not be found.</li>
+        <li><strong>500 Internal Server Error:</strong> The server encountered an unexpected condition which prevented it from fulfilling the request.</li>
+    </ul>
+</body>
+</html>
